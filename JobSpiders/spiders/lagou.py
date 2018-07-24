@@ -4,7 +4,6 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
-from JobSpiders.utils.common import get_md5
 
 
 class LagouSpider(CrawlSpider):

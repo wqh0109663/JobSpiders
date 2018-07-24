@@ -1,14 +1,12 @@
-
 import re
 from JobSpiders.items import Job51Item, Job51ItemLoader
 from JobSpiders.utils.common import get_md5
 from datetime import datetime
 
 
-
-def parse_detail_utils(self, response, value):
+def parse_detail_utils(self, response):
     contain_key_word = response.xpath("//div[@class='tHeader tHjob']//h1/text()").extract_first()
-    m = re.search(value, contain_key_word, re.IGNORECASE)
+    m = re.search('java', contain_key_word, re.IGNORECASE) or re.search("人工智能", contain_key_word, re.IGNORECASE) or re.search('算法', contain_key_word, re.IGNORECASE) or re.search('大数据', contain_key_word, re.IGNORECASE) or re.search("C\+\+", contain_key_word, re.IGNORECASE) or re.search('go', contain_key_word, re.IGNORECASE) or re.search('python', contain_key_word, re.IGNORECASE)
     if m:
         itemloader = Job51ItemLoader(item=Job51Item(), response=response)
         itemloader.add_value("url", response.url)

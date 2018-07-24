@@ -10,7 +10,16 @@ from JobSpiders.utils.parse_detail import parse_detail_utils
 class Job51Spider(scrapy.Spider):
     name = 'job51'
     allowed_domains = ['jobs.51job.com', 'search.51job.com']
-    start_urls = ['https://search.51job.com/list/000000%252C00,000000,0000,00,9,99,java,2,1.html/']
+    start_urls = ['https://search.51job.com/list/000000%252C00,000000,0000,00,9,99,java,2,1.html/',
+                  'https://search.51job.com/list/000000%252C00,000000,0000,00,9,99,'
+                  '%25E4%25BA%25BA%25E5%25B7%25A5%25E6%2599%25BA%25E8%2583%25BD,2,1.html',
+                  'https://search.51job.com/list/000000,000000,0000,00,9,99,%25E7%25AE%2597%25E6%25B3%2595,2,1.html',
+                  'https://search.51job.com/list/000000,000000,0000,00,9,99,'
+                  '%25E5%25A4%25A7%25E6%2595%25B0%25E6%258D%25AE,2,1.html', 'https://search.51job.com/list/000000,'
+                                                                            '000000,0000,00,9,99,C%252B%252B,2,'
+                                                                            '1.html',
+                  'https://search.51job.com/list/000000,000000,0000,00,9,99,go,2,1.html',
+                  'https://search.51job.com/list/000000,000000,0000,00,9,99,python,2,1.html']
 
     def parse(self, response):
         # 1获取到每一条招聘的url并将url给具体的解析函数进行解析字段
@@ -25,4 +34,4 @@ class Job51Spider(scrapy.Spider):
             yield Request(url=next_url, callback=self.parse)
 
     def parse_detail(self, response):
-        yield parse_detail_utils(self, response, 'java')
+        yield parse_detail_utils(self, response)
