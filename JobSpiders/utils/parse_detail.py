@@ -4,9 +4,10 @@ from JobSpiders.utils.common import get_md5
 from datetime import datetime
 
 
-def parse_detail_utils(self, response):
+
+def parse_detail_utils(self, response, value):
     contain_key_word = response.xpath("//div[@class='tHeader tHjob']//h1/text()").extract_first()
-    m = re.search('java', contain_key_word, re.IGNORECASE) or re.search("人工智能", contain_key_word, re.IGNORECASE) or re.search('算法', contain_key_word, re.IGNORECASE) or re.search('大数据', contain_key_word, re.IGNORECASE) or re.search("C\+\+", contain_key_word, re.IGNORECASE) or re.search('go', contain_key_word, re.IGNORECASE) or re.search('python', contain_key_word, re.IGNORECASE)
+    m = re.search(value, contain_key_word, re.IGNORECASE)
     if m:
         itemloader = Job51ItemLoader(item=Job51Item(), response=response)
         itemloader.add_value("url", response.url)
@@ -39,7 +40,14 @@ def parse_detail_utils(self, response):
         itemloader.add_value("job_city", job_city)
         experience_year = response.xpath("//em[@class='i1']/../text()").extract_first("")
         itemloader.add_value("experience_year", experience_year)
-        education_need = response.xpath("//em[@class='i2']/../text()").extract_first("")
+        education_need = "无"
+        try:
+            education_need = response.xpath("//em[@class='i2']/../text()").extract_first("")
+            print(education_need)
+
+        except Exception as e:
+
+            print(e)
         itemloader.add_value("education_need", education_need)
         publish_date = response.xpath("//em[@class='i4']/../text()").extract_first("")
         itemloader.add_value("publish_date", publish_date)

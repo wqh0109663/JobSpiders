@@ -30,7 +30,8 @@ class ZhaopinAiSpider(scrapy.Spider):
         if response.status == 200:
             value = '人工智能'
             dict_obj = json.loads(response.text)
-            if dict_obj['data']:
+            print(dict_obj.get("data", ''))
+            if dict_obj.get("data", ''):
                 code = dict_obj['code']
                 numFound = dict_obj['data']['numFound']
                 # print(type((json.loads(response.text))['data']['numFound']))
@@ -42,11 +43,12 @@ class ZhaopinAiSpider(scrapy.Spider):
                         m = re.search(value, contain_key_word, re.IGNORECASE)
                         if m:
                             itemloader = Job51ItemLoader(item=Job51Item(), response=response)
-                            itemloader.add_value("url", response.url)
+                            itemloader.add_value("url", dict_obj['data']['results'][i]['positionURL'])
                             itemloader.add_value("url_obj_id", get_md5(response.url) + "{0}".format(i))
                             itemloader.add_value("title", contain_key_word)
                             str_salary = dict_obj['data']['results'][i]['salary']
-                            if 'K' in str_salary:
+                            print(str_salary)
+                            if 'K' and '-' in str_salary:
                                 try:
                                     list_str = str_salary.split("-")
                                     salary_min = float(list_str[0].strip().split("K")[0].strip()) * 1000
