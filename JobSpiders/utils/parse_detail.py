@@ -4,7 +4,6 @@ from JobSpiders.utils.common import get_md5
 from datetime import datetime
 
 
-
 def parse_detail_utils(self, response, value):
     contain_key_word = response.xpath("//div[@class='tHeader tHjob']//h1/text()").extract_first()
     m = re.search(value, contain_key_word, re.IGNORECASE)
@@ -13,42 +12,57 @@ def parse_detail_utils(self, response, value):
         itemloader.add_value("url", response.url)
         itemloader.add_value("url_obj_id", get_md5(response.url))
         itemloader.add_value("title", contain_key_word)
-        str_salary = response.xpath("/html/body/div[3]/div[2]/div[2]/div/div[1]/strong//text()").extract_first("")
-        if '千/月' in str_salary:
-            list_str = str_salary.split("-")
-            print(list_str[0])
-            print(list_str[1].strip().split("千")[0].strip())
-            salary_min = float(list_str[0]) * 1000
-            salary_max = float(list_str[1].strip().split("千")[0].strip()) * 1000
-            itemloader.add_value("salary_min", salary_min)
-            itemloader.add_value("salary_max", salary_max)
-        elif '万/月' in str_salary:
-            list_str = str_salary.strip().split("-")
-            print(list_str[0])
-            print(list_str[1].strip().split("万")[0].strip())
-            salary_min = float(list_str[0]) * 10000
-            salary_max = float(list_str[1].strip().split("万")[0].strip()) * 10000
-            itemloader.add_value("salary_min", salary_min)
-            itemloader.add_value("salary_max", salary_max)
-        elif '万/年' in str_salary:
-            list_str = str_salary.strip().split("-")
-            salary_min = float(list_str[0]) * 10000 / 12
-            salary_max = float(list_str[1].strip().split("万")[0].strip()) * 10000 / 12
-            itemloader.add_value("salary_min", salary_min)
-            itemloader.add_value("salary_max", salary_max)
+        try:
+            if response.xpath("/html/body/div[3]/div[2]/div[2]/div/div[1]/strong//text()").extract_first("") != "":
+                str_salary = response.xpath("/html/body/div[3]/div[2]/div[2]/div/div[1]/strong//text()").extract_first("")
+                if '千/月' in str_salary:
+                    list_str = str_salary.split("-")
+                    print(list_str[0])
+                    print(list_str[1].strip().split("千")[0].strip())
+                    salary_min = float(list_str[0]) * 1000
+                    salary_max = float(list_str[1].strip().split("千")[0].strip()) * 1000
+                    itemloader.add_value("salary_min", salary_min)
+                    itemloader.add_value("salary_max", salary_max)
+                elif '万/月' in str_salary:
+                    list_str = str_salary.strip().split("-")
+                    print(list_str[0])
+                    print(list_str[1].strip().split("万")[0].strip())
+                    salary_min = float(list_str[0]) * 10000
+                    salary_max = float(list_str[1].strip().split("万")[0].strip()) * 10000
+                    itemloader.add_value("salary_min", salary_min)
+                    itemloader.add_value("salary_max", salary_max)
+                elif '万/年' in str_salary:
+                    list_str = str_salary.strip().split("-")
+                    salary_min = float(list_str[0]) * 10000 / 12
+                    salary_max = float(list_str[1].strip().split("万")[0].strip()) * 10000 / 12
+                    itemloader.add_value("salary_min", salary_min)
+                    itemloader.add_value("salary_max", salary_max)
+                else:
+                    itemloader.add_value("salary_min", 0)
+                    itemloader.add_value("salary_max", 0)
+            else:
+                itemloader.add_value("salary_min", 0)
+                itemloader.add_value("salary_max", 0)
+        except Exception as e:
+            print("str_salary error")
+            print(e)
+            itemloader.add_value("salary_min", 0)
+            itemloader.add_value("salary_max", 0)
         job_city = response.xpath("//span[@class='lname']/text()").extract_first("")
         itemloader.add_value("job_city", job_city)
         experience_year = response.xpath("//em[@class='i1']/../text()").extract_first("")
         itemloader.add_value("experience_year", experience_year)
         education_need = "无"
         try:
-            education_need = response.xpath("//em[@class='i2']/../text()").extract_first("")
-            print(education_need)
+            if response.xpath("//em[@class='i2']/../text()").extract_first("") != "":
+                education_need = response.xpath("//em[@class='i2']/../text()").extract_first("")
+                print(education_need)
 
         except Exception as e:
-
+            print("education_need error null")
             print(e)
-        itemloader.add_value("education_need", education_need)
+        finally:
+            itemloader.add_value("education_need", education_need)
         publish_date = response.xpath("//em[@class='i4']/../text()").extract_first("")
         itemloader.add_value("publish_date", publish_date)
         job_advantage_tags_list = response.xpath(

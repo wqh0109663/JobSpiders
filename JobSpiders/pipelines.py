@@ -4,7 +4,7 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-
+import random
 
 import MySQLdb
 from twisted.enterprise import adbapi
@@ -59,9 +59,38 @@ class MysqlTwistedPipline(object):
             query.addErrback(self.handle_error, item, spider)  # 处理异常
         elif spider.name == 'job_ai' or spider.name == 'zhaopin_ai':
             query = self.dbpool.runInteraction(self.do_insert_ai, item)
-        # elif spider.name == 'zhaopin_cplus':
-        #     query = self.dbpool.runInteraction(self.do_insert_test, item)
-            query.addErrback(self.handle_error, item, spider)  # 处理异常
+        elif spider.name == 'lagou':
+            print(type(item['type']))
+            for it in range(len(item['type'])):
+                if "java" in item['type']:
+                    # item['url_obj_id'] = item['url_obj_id']+ "{0}".format(random.randint(61, 70))
+                    query = self.dbpool.runInteraction(self.do_insert_java, item)
+                    query.addErrback(self.handle_error, item, spider)  # 处理异常
+                if "python" in item['type'] :
+                    # item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(51, 60))
+                    query = self.dbpool.runInteraction(self.do_insert_python, item)
+                    query.addErrback(self.handle_error, item, spider)  # 处理异常
+                if "人工智能" in item['type'] :
+                    # item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(41, 50))
+                    query = self.dbpool.runInteraction(self.do_insert_ai, item)
+                    query.addErrback(self.handle_error, item, spider)  # 处理异常
+                if "算法" in item['type'][it] :
+                    # item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(31, 40))
+                    query = self.dbpool.runInteraction(self.do_insert_arithmetic, item)
+                    query.addErrback(self.handle_error, item, spider)  # 处理异常
+                if"大数据" in item['type']:
+                    # item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(21, 30))
+                    query = self.dbpool.runInteraction(self.do_insert_bigdata, item)
+                    query.addErrback(self.handle_error, item, spider)  # 处理异常
+                if "C++" in item['type']:
+                    # item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(1, 10))
+                    query = self.dbpool.runInteraction(self.do_insert_cplus, item)
+                    query.addErrback(self.handle_error, item, spider)  # 处理异常
+                if "go" in item['type']:
+                    # item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(11, 20))
+                    query = self.dbpool.runInteraction(self.do_insert_go, item)
+                    query.addErrback(self.handle_error, item, spider)  # 处理异常
+
 
     def handle_error(self, failure, item, spider):
         # 处理异步插入的异常
@@ -74,7 +103,7 @@ class MysqlTwistedPipline(object):
         # print(insert_sql, params)
         # cursor.execute(insert_sql, params)
         insert_sql = "insert into  `job_java` (url,url_obj_id,title,salary_min,salary_max,job_city,experience_year,education_need,publish_date,job_advantage_tags,position_info,job_classification,crawl_time)   VALUES (%s , %s ,%s ,%s ,%s,%s,%s , %s ,%s ,%s ,%s,%s,%s)    "
-
+        item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(61, 70))
         cursor.execute(insert_sql,
                        (item["url"], item["url_obj_id"], item["title"], item["salary_min"], item["salary_max"],
                         item["job_city"], item["experience_year"], item["education_need"], item["publish_date"],
@@ -88,7 +117,7 @@ class MysqlTwistedPipline(object):
         # print(insert_sql, params)
         # cursor.execute(insert_sql, params)
         insert_sql = "insert into  `job_python` (url,url_obj_id,title,salary_min,salary_max,job_city,experience_year,education_need,publish_date,job_advantage_tags,position_info,job_classification,crawl_time)   VALUES (%s , %s ,%s ,%s ,%s,%s,%s , %s ,%s ,%s ,%s,%s,%s)    "
-
+        item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(51, 60))
         cursor.execute(insert_sql,
                        (item["url"], item["url_obj_id"], item["title"], item["salary_min"], item["salary_max"],
                         item["job_city"], item["experience_year"], item["education_need"], item["publish_date"],
@@ -102,7 +131,7 @@ class MysqlTwistedPipline(object):
         # print(insert_sql, params)
         # cursor.execute(insert_sql, params)
         insert_sql = "insert into  `job_ai` (url,url_obj_id,title,salary_min,salary_max,job_city,experience_year,education_need,publish_date,job_advantage_tags,position_info,job_classification,crawl_time)   VALUES (%s , %s ,%s ,%s ,%s,%s,%s , %s ,%s ,%s ,%s,%s,%s)    "
-
+        item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(41, 50))
         cursor.execute(insert_sql,
                        (item["url"], item["url_obj_id"], item["title"], item["salary_min"], item["salary_max"],
                         item["job_city"], item["experience_year"], item["education_need"], item["publish_date"],
@@ -116,7 +145,7 @@ class MysqlTwistedPipline(object):
         # print(insert_sql, params)
         # cursor.execute(insert_sql, params)
         insert_sql = "insert into  `job_arithmetic` (url,url_obj_id,title,salary_min,salary_max,job_city,experience_year,education_need,publish_date,job_advantage_tags,position_info,job_classification,crawl_time)   VALUES (%s , %s ,%s ,%s ,%s,%s,%s , %s ,%s ,%s ,%s,%s,%s)    "
-
+        item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(31, 40))
         cursor.execute(insert_sql,
                        (item["url"], item["url_obj_id"], item["title"], item["salary_min"], item["salary_max"],
                         item["job_city"], item["experience_year"], item["education_need"], item["publish_date"],
@@ -130,7 +159,7 @@ class MysqlTwistedPipline(object):
         # print(insert_sql, params)
         # cursor.execute(insert_sql, params)
         insert_sql = "insert into  `job_bigdata` (url,url_obj_id,title,salary_min,salary_max,job_city,experience_year,education_need,publish_date,job_advantage_tags,position_info,job_classification,crawl_time)   VALUES (%s , %s ,%s ,%s ,%s,%s,%s , %s ,%s ,%s ,%s,%s,%s)    "
-
+        item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(21, 30))
         cursor.execute(insert_sql,
                        (item["url"], item["url_obj_id"], item["title"], item["salary_min"], item["salary_max"],
                         item["job_city"], item["experience_year"], item["education_need"], item["publish_date"],
@@ -144,7 +173,7 @@ class MysqlTwistedPipline(object):
         # print(insert_sql, params)
         # cursor.execute(insert_sql, params)
         insert_sql = "insert into  `job_cplus` (url,url_obj_id,title,salary_min,salary_max,job_city,experience_year,education_need,publish_date,job_advantage_tags,position_info,job_classification,crawl_time)   VALUES (%s , %s ,%s ,%s ,%s,%s,%s , %s ,%s ,%s ,%s,%s,%s)    "
-
+        item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(1, 10))
         cursor.execute(insert_sql,
                        (item["url"], item["url_obj_id"], item["title"], item["salary_min"], item["salary_max"],
                         item["job_city"], item["experience_year"], item["education_need"], item["publish_date"],
@@ -158,7 +187,7 @@ class MysqlTwistedPipline(object):
         # print(insert_sql, params)
         # cursor.execute(insert_sql, params)
         insert_sql = "insert into  `job_go` (url,url_obj_id,title,salary_min,salary_max,job_city,experience_year,education_need,publish_date,job_advantage_tags,position_info,job_classification,crawl_time)   VALUES (%s , %s ,%s ,%s ,%s,%s,%s , %s ,%s ,%s ,%s,%s,%s)    "
-
+        item['url_obj_id'] = item['url_obj_id'] + "{0}".format(random.randint(11, 20))
         cursor.execute(insert_sql,
                        (item["url"], item["url_obj_id"], item["title"], item["salary_min"], item["salary_max"],
                         item["job_city"], item["experience_year"], item["education_need"], item["publish_date"],

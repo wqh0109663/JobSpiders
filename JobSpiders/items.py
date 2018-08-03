@@ -57,28 +57,29 @@ class LagouJobItem(scrapy.Item):
     #拉勾网职位信息
     title = scrapy.Field()
     url = scrapy.Field()
-    url_object_id = scrapy.Field()
+    url_obj_id = scrapy.Field()
     salary_min = scrapy.Field()
     salary_max = scrapy.Field()
     job_city = scrapy.Field(
         input_processor=MapCompose(remove_splash),
     )
-    work_years = scrapy.Field(
+    experience_year = scrapy.Field(
         input_processor=MapCompose(remove_splash),
     )
-    degree_need = scrapy.Field(
+    education_need = scrapy.Field(
         input_processor=MapCompose(remove_splash),
     )
     job_type = scrapy.Field()
-    publish_time = scrapy.Field()
-    job_advantage = scrapy.Field()
-    job_desc = scrapy.Field()
+    publish_date = scrapy.Field()
+    job_advantage_tags = scrapy.Field()
+    position_info = scrapy.Field()
     job_addr = scrapy.Field(
         input_processor=MapCompose(remove_tags, handle_jobaddr),
     )
     company_name = scrapy.Field()
     company_url = scrapy.Field()
-    tags = scrapy.Field(
+    job_classification = scrapy.Field(
         input_processor=Join(",")
     )
+    type = scrapy.Field()
     crawl_time = scrapy.Field()
