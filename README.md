@@ -8,4 +8,6 @@ scrapy spider
 使用方法 运行main文件，打开注释内容，运行需要的spider即可
 分析未完待续...    
 
-![image](http://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/java.png)
+![image](http://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/java.png)   
+
+![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
