@@ -10,4 +10,4 @@ scrapy spider
 
 ![image](http://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/java.png)   
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+
