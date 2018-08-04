@@ -1,4 +1,4 @@
-# 基于Scrapy的Python3职业信息爬虫
+# 基于Scrapy框架的Python3就业信息Jobspiders爬虫
 * Items.py : 定义爬取的数据
 * pipelines.py : 后处理(Post-process)，存储爬取的数据
 * spiders文件夹 : 爬虫程序
