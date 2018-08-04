@@ -17,7 +17,7 @@
 * mysql
 * 安装好scrapy框架
 * (安装虚拟环境和虚拟环境的wrapper)
-* 其次就是安装一些模块
+* 其次就是安装一些模块,如果没有安装虚拟环境可以在pycharm中进行安装，alt+enter选择，如果没有正确的模块，就在setting中的project中的解释器Interpreter，再点击+号在里面搜索
 ####  运行项目
 * git clone https://github.com/wqh0109663/JobSpiders.git
 * 把下好的项目在pycharm中打开
