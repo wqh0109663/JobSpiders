@@ -1,6 +1,6 @@
 # 基于Scrapy框架的Python3就业信息Jobspiders爬虫
 * Items.py : 定义爬取的数据
-* pipelines.py : 后处理(Post-process)，存储爬取的数据
+* pipelines.py : 管道文件，异步存储爬取的数据
 * spiders文件夹 : 爬虫程序
 * settings.py : Srapy设定，请参考 [官方文档](https://scrapy-chs.readthedocs.io/zh_CN/latest/topics/settings.html#topics-settings-ref)
 * scrapy spider
