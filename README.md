@@ -29,7 +29,8 @@
 ![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/java.png)   
 
 ##  下面是博客地址
-[戳这里](https://blog.csdn.net/qq_36992605/article/details/81382110)
+* 里面包含一些简要的说明
+* [博客戳这里](https://blog.csdn.net/qq_36992605/article/details/81382110)
 
 
 * 分析未完待续...  
