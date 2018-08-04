@@ -1,7 +1,7 @@
 # 基于Scrapy的Python3职业信息爬虫
 * Items.py : 定义爬取的数据
 * pipelines.py : 后处理(Post-process)，存储爬取的数据
-* taobao.py : 爬虫程序
+* spiders文件夹 : 爬虫程序
 * settings.py : Srapy设定，请参考 [官方文档](https://scrapy-chs.readthedocs.io/zh_CN/latest/topics/settings.html#topics-settings-ref)
 * scrapy spider
 * 爬取三大知名网站,使用三种技术手段，
@@ -12,12 +12,17 @@
 ## 实现功能：
 * 从三大知名网站上爬取就业信息，爬取发布工作的日期，薪资，城市，岗位有那些福利，要求，分类等等，并将爬到的数据存到mysql数据库中
 ##  使用教程：
+####  运行前需要安装的环境
 * Python3
 * mysql
 * 安装好scrapy框架
 * (安装虚拟环境和虚拟环境的wrapper)
-* 其次就是安装一些模块，
+* 其次就是安装一些模块
+####  运行项目
+* git clone https://github.com/wqh0109663/JobSpiders.git
+* 把下好的项目在pycharm中打开
 * 运行main文件，打开注释内容，运行需要的spider即可
+* 或者直接在命令行中运行scrapy runspider XX某某spider
 
 ##  下面是一条爬到的数据
 
