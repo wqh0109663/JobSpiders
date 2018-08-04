@@ -18,9 +18,10 @@
 * (安装虚拟环境和虚拟环境的wrapper)
 * 其次就是安装一些模块，
 * 运行main文件，打开注释内容，运行需要的spider即可
-* 分析未完待续...  
+
 ##  下面是一条爬到的数据
 
 ![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/java.png)   
 
 
+* 分析未完待续...  
