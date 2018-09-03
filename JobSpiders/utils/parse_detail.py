@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 def parse_detail_utils(self, response, value):
-    contain_key_word = response.xpath("//div[@class='tHeader tHjob']//h1/text()").extract_first()
+    contain_key_word = response.xpath("//div[@class='tHeader tHjob']//h1/text()").extract_first().strip()
     m = re.search(value, contain_key_word, re.IGNORECASE)
     if m:
         itemloader = Job51ItemLoader(item=Job51Item(), response=response)
@@ -14,7 +14,8 @@ def parse_detail_utils(self, response, value):
         itemloader.add_value("title", contain_key_word)
         try:
             if response.xpath("/html/body/div[3]/div[2]/div[2]/div/div[1]/strong//text()").extract_first("") != "":
-                str_salary = response.xpath("/html/body/div[3]/div[2]/div[2]/div/div[1]/strong//text()").extract_first("")
+                str_salary = response.xpath("/html/body/div[3]/div[2]/div[2]/div/div[1]/strong//text()").extract_first(
+                    "")
                 if '千/月' in str_salary:
                     list_str = str_salary.split("-")
                     print(list_str[0])
@@ -48,25 +49,30 @@ def parse_detail_utils(self, response, value):
             print(e)
             itemloader.add_value("salary_min", 0)
             itemloader.add_value("salary_max", 0)
-        job_city = response.xpath("//span[@class='lname']/text()").extract_first("")
+        info = response.xpath("//p[@class='msg ltype']/@title").extract_first()
+        job_city = info.strip().split("|")[0].strip()
+        experience_year = info.strip().split("|")[1].strip()
+        # job_city = response.xpath("//span[@class='lname']/text()").extract_first("")
         itemloader.add_value("job_city", job_city)
-        experience_year = response.xpath("//em[@class='i1']/../text()").extract_first("")
+        # experience_year = response.xpath("//em[@class='i1']/../text()").extract_first("")
         itemloader.add_value("experience_year", experience_year)
         education_need = "无"
         try:
-            if response.xpath("//em[@class='i2']/../text()").extract_first("") != "":
-                education_need = response.xpath("//em[@class='i2']/../text()").extract_first("")
-                print(education_need)
+            # if response.xpath("//em[@class='i2']/../text()").extract_first("") != "":
+                # education_need = response.xpath("//em[@class='i2']/../text()").extract_first("")
+            education_need = info.strip().split("|")[2].strip()
+            print(education_need)
 
         except Exception as e:
             print("education_need error null")
             print(e)
         finally:
             itemloader.add_value("education_need", education_need)
-        publish_date = response.xpath("//em[@class='i4']/../text()").extract_first("")
+        # publish_date = response.xpath("//em[@class='i4']/../text()").extract_first("")
+        publish_date = info.strip().split("|")[4].strip()
         itemloader.add_value("publish_date", publish_date)
-        job_advantage_tags_list = response.xpath(
-            "/html/body/div[3]/div[2]/div[3]/div[1]/div/p/span/text()").extract()
+        # job_advantage_tags_list = response.xpath("/html/body/div[3]/div[2]/div[3]/div[1]/div/p/span/text()").extract()
+        job_advantage_tags_list = response.xpath("//div[@class='t1']//span/text()").extract()
         if len(job_advantage_tags_list) == 0:
             job_advantage_tags = " "
         else:

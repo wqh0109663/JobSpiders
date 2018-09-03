@@ -27,7 +27,7 @@ class ZhaopinCplusSpider(scrapy.Spider):
 
     def parse_detail(self, response):
         if response.status == 200:
-            value = 'c\+\+'
+            value = 'C\+\+'
             dict_obj = json.loads(response.text)
             try:
                 if dict_obj.get("data", ''):

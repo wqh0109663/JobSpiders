@@ -14,7 +14,7 @@ class JobCplusSpider(scrapy.Spider):
         # 1获取到每一条招聘的url并将url给具体的解析函数进行解析字段
         all_url = response.xpath('//*[@id="resultList"]//div/p/span/a/@href').extract()
         for one_url in all_url:
-            yield Request(url=parse.urljoin(response.url, one_url), callback=self.parse_detail )
+            yield Request(url=parse.urljoin(response.url, one_url), callback=self.parse_detail)
 
         # 2获取下一页的url并交给scrapy下载
         next_url = response.xpath('//*[@id="resultList"]/div[55]/div/div/div/ul/li[8]/a/@href').extract_first("")
