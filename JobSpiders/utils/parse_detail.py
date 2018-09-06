@@ -2,6 +2,7 @@ import re
 from JobSpiders.items import Job51Item, Job51ItemLoader
 from JobSpiders.utils.common import get_md5
 from datetime import datetime
+import time
 
 
 def parse_detail_utils(self, response, value):
@@ -10,7 +11,7 @@ def parse_detail_utils(self, response, value):
     if m:
         itemloader = Job51ItemLoader(item=Job51Item(), response=response)
         itemloader.add_value("url", response.url)
-        itemloader.add_value("url_obj_id", get_md5(response.url))
+        itemloader.add_value("url_obj_id", get_md5(response.url)+str(int(time.time())))
         itemloader.add_value("title", contain_key_word)
         try:
             if response.xpath("/html/body/div[3]/div[2]/div[2]/div/div[1]/strong//text()").extract_first("") != "":
@@ -51,25 +52,26 @@ def parse_detail_utils(self, response, value):
             itemloader.add_value("salary_max", 0)
         info = response.xpath("//p[@class='msg ltype']/@title").extract_first()
         job_city = info.strip().split("|")[0].strip()
-        experience_year = info.strip().split("|")[1].strip()
+        experience_year = find_in_list(self, key="经验", list_name=info)
+
         # job_city = response.xpath("//span[@class='lname']/text()").extract_first("")
         itemloader.add_value("job_city", job_city)
         # experience_year = response.xpath("//em[@class='i1']/../text()").extract_first("")
         itemloader.add_value("experience_year", experience_year)
-        education_need = "无"
         try:
             # if response.xpath("//em[@class='i2']/../text()").extract_first("") != "":
-                # education_need = response.xpath("//em[@class='i2']/../text()").extract_first("")
+            # education_need = response.xpath("//em[@class='i2']/../text()").extract_first("")
             education_need = info.strip().split("|")[2].strip()
             print(education_need)
-
+            if '人' in education_need:
+                education_need = "无"
+            itemloader.add_value("education_need", education_need)
         except Exception as e:
             print("education_need error null")
             print(e)
-        finally:
-            itemloader.add_value("education_need", education_need)
+
         # publish_date = response.xpath("//em[@class='i4']/../text()").extract_first("")
-        publish_date = info.strip().split("|")[4].strip()
+        publish_date = find_in_list(self, key="发布", list_name=info)
         itemloader.add_value("publish_date", publish_date)
         # job_advantage_tags_list = response.xpath("/html/body/div[3]/div[2]/div[3]/div[1]/div/p/span/text()").extract()
         job_advantage_tags_list = response.xpath("//div[@class='t1']//span/text()").extract()
@@ -90,3 +92,10 @@ def parse_detail_utils(self, response, value):
         itemloader.add_value("crawl_time", datetime.now())
         item = itemloader.load_item()
         return item
+
+
+def find_in_list(self, key, list_name):
+    for i in range(0, len(list_name)):
+        value = list_name.strip().split("|")[i].strip()
+        if key in value:
+            return value

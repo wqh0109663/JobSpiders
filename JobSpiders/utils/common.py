@@ -2,6 +2,7 @@
 
 import hashlib
 import re
+import time
 
 
 def get_md5(url):

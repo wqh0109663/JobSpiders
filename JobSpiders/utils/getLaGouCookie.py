@@ -50,7 +50,7 @@ def get_cookies():
     return requests.utils.dict_from_cookiejar(session.cookies)
 
 def getLaGouCookie():
-    username = '136****4970'
-    passwd = 'wqh****903'
+    username = '13677134970'
+    passwd = 'wqh19950903'
     login(username, passwd)
     return get_cookies()

@@ -4,7 +4,7 @@ from datetime import datetime
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-
+import time
 from selenium import webdriver
 import pickle
 import logging
@@ -95,7 +95,7 @@ class LagouSpider(CrawlSpider):
             item_loader.add_value("type", list_type)
             item_loader.add_css("title", ".job-name::attr(title)")
             item_loader.add_value("url", response.url)
-            item_loader.add_value("url_obj_id", get_md5(response.url))
+            item_loader.add_value("url_obj_id", get_md5(response.url)+str(int(time.time())))
             str_salary = response.xpath("//span[@class='salary']/text()").extract_first("")
             if 'k' in str_salary:
                 try:
@@ -117,8 +117,12 @@ class LagouSpider(CrawlSpider):
             item_loader.add_xpath("experience_year", "//*[@class='job_request']/p/span[3]/text()")
             item_loader.add_xpath("education_need", "//*[@class='job_request']/p/span[4]/text()")
             item_loader.add_xpath("job_type", "//*[@class='job_request']/p/span[5]/text()")
-
-            item_loader.add_css("job_classification", '.position-label li::text')
+            try:
+                item_loader.add_css("job_classification", '.position-label li::text')
+            except Exception as e:
+                print("job_classification error")
+                print(e)
+                item_loader.add_value("job_classification", '.job-name::attr(title)')
             item_loader.add_css("publish_date", ".publish_time::text")
             item_loader.add_css("job_advantage_tags", ".job-advantage p::text")
             item_loader.add_css("position_info", ".job_bt div")
