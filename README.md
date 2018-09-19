@@ -12,12 +12,45 @@
 ## 实现功能：
 * 从三大知名网站上爬取就业信息，爬取**发布工作的日期**，**薪资**，**城市**，**岗位有那些福利**，**要求**，**分类**等等，并将爬到的数据存到**mysql数据库中**
 ##  使用教程：
-####  运行前需要安装的环境
-* Python3
-* mysql
-* 安装好scrapy框架
-* (安装虚拟环境和虚拟环境的wrapper)
-* 其次就是安装一些模块,如果没有安装虚拟环境可以在pycharm中进行安装，alt+enter选择，如果没有正确的模块，就在setting中的project中的解释器Interpreter，再点击+号在里面搜索
+###  运行前需要安装的环境
+* Python3 Ubantu16.04自带，```sudo apt-get install python3.5```
+* mysql ： ```sudo apt-get install mysql-server```
+* 安装虚拟环境和虚拟环境的wrapper
+  ```
+  sudo apt-get install python-pip python-dev build-essential
+  sudo pip install --upgrade pip
+  sudo pip install --upgrade virtualenv
+  sudo pip install virtualenvwrapper
+  ```
+  - 配置virtualenvwrapper的工作空间
+
+      - ```cd ~```
+      - ```mkdir .virtualenvs```
+      - ```sudo find /  -name virtualenvwrapper.sh```
+      - ```vim ~/.zshrc``` 注意vim自己当前所用的shell，$SHELL查看，用的是bash就vim ~/.bashrc,末行加上
+      ```export WORKON_HOME=$HOME/.virtualenvs
+      source /usr/local/bin/virtualenvwrapper.sh``` ，注意替换自己find到的virtualenvwrapper.sh位置
+
+* 其次就是安装一些模块，提供三种
+  1. 第一种方式直接使用我的虚拟环境，使virtualenv目录下的py3scrapy目录成为当前pycharm运行的环境
+  2. 第二种方式如果安装了virtualenv和virtualenvwrapper就直接运行以下命令安装
+    ```
+    mkvirtualenv --python=/usr/bin/python3 py3scrapy
+    workon py3scrapy
+    安装好scrapy框架：
+      pip install scrapy
+      - 安装时遇到一个错误twisted/test/raiser.c:4:20: fatal error: Python.h: No such file or directory，解决办法：先安装 **python-devel**，再安装
+      - 可以使用豆瓣源加速安装
+      pip install -i https://pypi.douban.com/simple scrapy
+      pip install fake-useragent
+      sudo apt-get install libmysqlclient-dev
+      pip install mysqlclient -i https://pypi.douban.com/simple
+      其余的在pycharm中alt enter安装
+
+   ```
+
+  3. 如果没有安装虚拟环境可以在pycharm中进行安装，alt+enter选择，如果没有正确的模块，就在setting中的project中的解释器Interpreter，再点击+号在里面搜索
+
 ####  运行项目
 * git clone https://github.com/wqh0109663/JobSpiders.git
 * 把下好的项目在pycharm中打开
