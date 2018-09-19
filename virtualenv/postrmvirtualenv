@@ -1,0 +1,4 @@
+#!/usr/bin/zsh
+# This hook is run after a virtualenv is deleted.
+# argument: full path to environment directory
+

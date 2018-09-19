@@ -1,0 +1,3 @@
+#!/usr/bin/zsh
+# This hook is sourced after a new virtualenv is activated.
+
