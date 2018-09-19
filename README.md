@@ -32,7 +32,9 @@
       source /usr/local/bin/virtualenvwrapper.sh``` ，注意替换自己find到的virtualenvwrapper.sh位置
 
 * 其次就是安装一些模块，提供三种
-  1. 第一种方式直接使用我的虚拟环境，使virtualenv目录下的py3scrapy目录成为当前pycharm运行的环境
+  1. 第一种方式直接使用我的虚拟环境，使virtualenv目录下的py3scrapy目录成为当前pycharm运行的环境  
+
+  ![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/virtualenv.png)
   2. 第二种方式如果安装了virtualenv和virtualenvwrapper就直接运行以下命令安装
     ```
     mkvirtualenv --python=/usr/bin/python3 py3scrapy
