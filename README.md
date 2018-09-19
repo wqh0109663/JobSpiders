@@ -56,7 +56,11 @@
 ####  运行项目
 * git clone https://github.com/wqh0109663/JobSpiders.git
 * 把下好的项目在pycharm中打开
-* 运行main文件，打开注释内容，运行需要的spider即可
+* 新建一个数据库叫jobspider，编码用utf-8 ，运行jobspider.sql文件
+  - create database jobspider charset utf8;
+  - use jobspider;
+  - source sql路径;
+* 运行main文件，打开注释内容，运行需要的spider即可，运行拉勾网的时候要改动谷歌浏览器的驱动chromedriver位置
 * 或者直接在命令行中运行scrapy runspider XX某某spider
 
 ##  下面是一条爬到的数据
