@@ -38,7 +38,10 @@ class LagouSpider(CrawlSpider):
     }
     # cookie='ga=GA1.2.430541542.1531227260; user_trace_token=20180710205419-5c6c1887-8440-11e8-993d-5254005c3644; LGUID=20180710205419-5c6c1cf6-8440-11e8-993d-5254005c3644; index_location_city=%E5%85%A8%E5%9B%BD; JSESSIONID=ABAAABAAAGFABEFC268BFA79F037F3E81290C6985343757; Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1531877495,1531982693,1532526791,1532937871; _gid=GA1.2.1809205573.1532937871; TG-TRACK-CODE=index_search; X_HTTP_TOKEN=256bfa9cb92ef88a7f7ee1f7bc905564; SEARCH_ID=9ad79bdbdd374fe2afcc9e4b06b54b58; ab_test_random_num=0; hasDeliver=0; showExpriedIndex=1; showExpriedCompanyHome=1; showExpriedMyPublish=1; _gat=1; LGSID=20180730180847-8c66cefa-93e0-11e8-abc3-525400f775ce; PRE_UTM=; PRE_HOST=; PRE_SITE=; PRE_LAND=https%3A%2F%2Fwww.lagou.com%2F; LG_LOGIN_USER_ID=d972850df5693982a5f2563e25543780d46de1e07ef92a97ca47f15c949e2c50; _putrc=4FD3D6BE655DEA0F123F89F2B170EADC; login=true; unick=%E5%90%B4%E5%90%AF%E6%AC%A2; gate_login_token=3bac4153fd3381c0933726c618b0bc9039dac868f848721a67b3379dee220f4c; LGRID=20180730180923-a1f5d23c-93e0-11e8-a082-5254005c3644; Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1532945363'
     # cookie = getLaGouCookie()
-    cookie = {'JSESSIONID': 'ABAAABAAAHAAAFD8DAE0CD2E746F43F737F035650B6E7EF', 'ticketGrantingTicketId': '_CAS_TGT_TGT-cfa8b888370445b5b755364bfbb804cf-20180730225005-_CAS_TGT_', 'user_trace_token': '20180730225004-a4d90eec-e01f-4a00-9f5c-2645eda28272', 'LG_LOGIN_USER_ID': '2da6d20b2b5356d5198633f97505a8223f09a663fe92f78f64936c31a3bfd73c'}
+    cookie = {'JSESSIONID': 'ABAAABAAAHAAAFD8DAE0CD2E746F43F737F035650B6E7EF',
+              'ticketGrantingTicketId': '_CAS_TGT_TGT-cfa8b888370445b5b755364bfbb804cf-20180730225005-_CAS_TGT_',
+              'user_trace_token': '20180730225004-a4d90eec-e01f-4a00-9f5c-2645eda28272',
+              'LG_LOGIN_USER_ID': '2da6d20b2b5356d5198633f97505a8223f09a663fe92f78f64936c31a3bfd73c'}
 
     def start_requests(self):
         browser = webdriver.Chrome(executable_path="/home/wqh/下载/chromedriver")
@@ -91,11 +94,11 @@ class LagouSpider(CrawlSpider):
             flag = True
             list_type.append("go")
         if flag:
-            #解析拉勾网的职位
+            # 解析拉勾网的职位
             item_loader.add_value("type", list_type)
             item_loader.add_css("title", ".job-name::attr(title)")
             item_loader.add_value("url", response.url)
-            item_loader.add_value("url_obj_id", get_md5(response.url)+str(int(time.time())))
+            item_loader.add_value("url_obj_id", get_md5(response.url) + str(int(time.time())))
             str_salary = response.xpath("//span[@class='salary']/text()").extract_first("")
             if 'k' in str_salary:
                 try:

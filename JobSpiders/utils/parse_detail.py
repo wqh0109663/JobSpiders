@@ -87,7 +87,7 @@ def parse_detail_utils(self, response, value):
             position_info_contains_job_request = ','.join(position_info_contains_job_request_list)
         itemloader.add_value("job_advantage_tags", job_advantage_tags)
         itemloader.add_value("position_info", position_info_contains_job_request)
-        job_classification = response.xpath("//div[@class='mt10']/p[1]/span[2]/text()").extract_first("")
+        job_classification = response.xpath("//div[@class='tCompany_main']//div[@class='mt10']/p[1]//a/text()").extract_first("")
         itemloader.add_value("job_classification", job_classification)
         itemloader.add_value("crawl_time", datetime.now())
         item = itemloader.load_item()
