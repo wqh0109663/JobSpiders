@@ -28,8 +28,11 @@
       - ```mkdir .virtualenvs```
       - ```sudo find /  -name virtualenvwrapper.sh```
       - ```vim ~/.zshrc``` 注意vim自己当前所用的shell，$SHELL查看，用的是bash就vim ~/.bashrc,末行加上
-      ```export WORKON_HOME=$HOME/.virtualenvs
-      source /usr/local/bin/virtualenvwrapper.sh``` ，注意替换自己find到的virtualenvwrapper.sh位置
+      ```Bash
+      export WORKON_HOME=$HOME/.virtualenvs
+      source /usr/local/bin/virtualenvwrapper.sh
+      ``` 
+      注意替换自己find到的virtualenvwrapper.sh位置
 
 * 其次就是安装一些模块，提供三种
   1. 第一种方式直接使用我的虚拟环境，使virtualenv目录下的py3scrapy目录成为当前pycharm运行的环境  
