@@ -7,6 +7,7 @@ from scrapy.http import Request
 import json
 from JobSpiders.items import Job51Item, Job51ItemLoader
 from JobSpiders.utils.common import get_md5
+import time
 
 
 class ZhaopinCplusSpider(scrapy.Spider):
@@ -44,7 +45,7 @@ class ZhaopinCplusSpider(scrapy.Spider):
                                 itemloader = Job51ItemLoader(item=Job51Item(), response=response)
                                 itemloader.add_value("url", dict_obj['data']['results'][i]['positionURL'])
                                 itemloader.add_value("url_obj_id",
-                                                     get_md5(response.url) + "{0}".format(i))
+                                                     get_md5(response.url) + str(int(time.time())))
                                 itemloader.add_value("title", contain_key_word)
                                 str_salary = dict_obj['data']['results'][i]['salary']
                                 if 'K' in str_salary:

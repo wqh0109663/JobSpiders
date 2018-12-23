@@ -54,13 +54,9 @@ def parse_detail_utils(self, response, value):
         job_city = info.strip().split("|")[0].strip()
         experience_year = find_in_list(self, key="经验", list_name=info)
 
-        # job_city = response.xpath("//span[@class='lname']/text()").extract_first("")
         itemloader.add_value("job_city", job_city)
-        # experience_year = response.xpath("//em[@class='i1']/../text()").extract_first("")
         itemloader.add_value("experience_year", experience_year)
         try:
-            # if response.xpath("//em[@class='i2']/../text()").extract_first("") != "":
-            # education_need = response.xpath("//em[@class='i2']/../text()").extract_first("")
             education_need = info.strip().split("|")[2].strip()
             print(education_need)
             if '人' in education_need:
@@ -70,10 +66,8 @@ def parse_detail_utils(self, response, value):
             print("education_need error null")
             print(e)
 
-        # publish_date = response.xpath("//em[@class='i4']/../text()").extract_first("")
         publish_date = find_in_list(self, key="发布", list_name=info)
         itemloader.add_value("publish_date", publish_date)
-        # job_advantage_tags_list = response.xpath("/html/body/div[3]/div[2]/div[3]/div[1]/div/p/span/text()").extract()
         job_advantage_tags_list = response.xpath("//div[@class='t1']//span/text()").extract()
         if len(job_advantage_tags_list) == 0:
             job_advantage_tags = " "
