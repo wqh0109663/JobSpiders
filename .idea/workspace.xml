@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="31cb1a55-f8db-4f61-a2b7-6cd6869dccd3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSpiders/cookies_dict.lagou" beforeDir="false" afterPath="$PROJECT_DIR$/JobSpiders/cookies_dict.lagou" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_ai.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_arithmetic.py" beforeDir="false" afterPath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_arithmetic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_bigdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_bigdata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_cplus.py" beforeDir="false" afterPath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_cplus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_go.py" beforeDir="false" afterPath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_go.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_java.py" beforeDir="false" afterPath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_java.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_python.py" beforeDir="false" afterPath="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_python.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSpiders/utils/parse_detail.py" beforeDir="false" afterPath="$PROJECT_DIR$/JobSpiders/utils/parse_detail.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/jieba_wordcloud_usage.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/jieba_wordcloud_usage.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpiders/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            <state relative-caret-position="323">
+              <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -53,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_python.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="858">
-              <caret line="57" column="33" lean-forward="true" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+            <state relative-caret-position="931">
+              <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
               </folding>
@@ -62,11 +54,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/lagou.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="110" column="57" lean-forward="true" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
+            <state relative-caret-position="19">
+              <caret line="98" column="62" selection-start-line="98" selection-start-column="62" selection-end-line="98" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/jieba_wordcloud_usage.ipynb">
+          <provider selected="true" editor-type-id="ipnb-editor">
+            <state>
+              <selected id="14" />
             </state>
           </provider>
         </entry>
@@ -74,7 +75,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_arithmetic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-776">
+            <state relative-caret-position="703">
               <caret line="45" column="107" selection-start-line="45" selection-start-column="107" selection-end-line="45" selection-end-column="107" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
@@ -86,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_cplus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5">
-              <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+            <state relative-caret-position="304">
+              <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
               </folding>
@@ -98,7 +99,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_ai.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
+            <state relative-caret-position="361">
               <caret line="27" column="70" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="70" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
@@ -132,6 +133,7 @@
         <option value="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_java.py" />
         <option value="$PROJECT_DIR$/JobSpiders/spiders/zhaopin_python.py" />
         <option value="$PROJECT_DIR$/JobSpiders/main.py" />
+        <option value="$PROJECT_DIR$/data/jieba_wordcloud_usage.ipynb" />
       </list>
     </option>
   </component>
@@ -146,7 +148,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -157,30 +158,29 @@
             <path>
               <item name="JobSpiders" type="b2602c69:ProjectViewProjectNode" />
               <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
-              <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JobSpiders" type="b2602c69:ProjectViewProjectNode" />
               <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
               <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
-              <item name="spiders" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JobSpiders" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
-              <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -237,16 +237,19 @@
       <workItem from="1543717903354" duration="6409000" />
       <workItem from="1543833208692" duration="4076000" />
       <workItem from="1544878762523" duration="11648000" />
+      <workItem from="1545577424335" duration="208000" />
+      <workItem from="1545659827427" duration="1723000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26073000" />
+    <option name="totallyTimeSpent" value="28004000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23787878" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24545455" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -260,7 +263,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32956383" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32956383" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32903227" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -523,40 +526,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_arithmetic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-776">
-          <caret line="45" column="107" selection-start-line="45" selection-start-column="107" selection-end-line="45" selection-end-column="107" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_ai.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="27" column="70" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="70" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_cplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5">
-          <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JobSpiders/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        <state relative-caret-position="323">
+          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
@@ -565,8 +538,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_python.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="57" column="33" lean-forward="true" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+        <state relative-caret-position="931">
+          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_arithmetic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="45" column="107" selection-start-line="45" selection-start-column="107" selection-end-line="45" selection-end-column="107" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_cplus.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/zhaopin_ai.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="27" column="70" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="70" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
           </folding>
@@ -575,8 +578,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/lagou.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="110" column="57" lean-forward="true" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
+        <state relative-caret-position="19">
+          <caret line="98" column="62" selection-start-line="98" selection-start-column="62" selection-end-line="98" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/jieba_wordcloud_usage.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="14" />
         </state>
       </provider>
     </entry>
