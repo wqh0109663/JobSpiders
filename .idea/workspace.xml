@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="31cb1a55-f8db-4f61-a2b7-6cd6869dccd3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/jieba_wordcloud_usage.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/jieba_wordcloud_usage.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/data/jieba_wordcloud_usage.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
-              <selected id="14" />
+              <selected id="8" />
             </state>
           </provider>
         </entry>
@@ -155,16 +154,6 @@
               <item name="JobSpiders" type="b2602c69:ProjectViewProjectNode" />
               <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="JobSpiders" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JobSpiders" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
-              <item name="JobSpiders" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -238,16 +227,23 @@
       <workItem from="1543833208692" duration="4076000" />
       <workItem from="1544878762523" duration="11648000" />
       <workItem from="1545577424335" duration="208000" />
-      <workItem from="1545659827427" duration="1723000" />
+      <workItem from="1545659827427" duration="1943000" />
     </task>
+    <task id="LOCAL-00001" summary="data analysis v0.1">
+      <created>1545664354396</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1545664354396</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28004000" />
+    <option name="totallyTimeSpent" value="28224000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24545455" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -260,7 +256,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32956383" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32903227" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32903227" />
@@ -319,6 +315,8 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/virtualenv" />
     </ignored-roots>
+    <MESSAGE value="data analysis v0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="data analysis v0.1" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/JobSpiders/spiders/__init__.py">
