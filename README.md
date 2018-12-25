@@ -74,5 +74,10 @@
 * 里面包含一些简要的说明
 * [博客戳这里](https://blog.csdn.net/qq_36992605/article/details/81382110)
 
+### 数据分析
+> 爬虫只是为了获得数据，重要的还是如何做数据分析
 
-* 考研中，分析未完待续...  
+#### 生成词云
+效果图  
+
+![](https://github.com/wqh0109663/JobSpiders/raw/master/data/image.png)
