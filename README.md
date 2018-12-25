@@ -79,6 +79,6 @@
 
 #### 生成词云
 * 连接数据库，取出其中的10000条数据，使用结巴分词，将中文进行拆分，手动去掉没有意义的词
-* 效果图，待完善 
+* 效果图，待完善  
 
 ![](https://github.com/wqh0109663/JobSpiders/raw/master/data/image.png)
