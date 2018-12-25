@@ -1,0 +1,3 @@
+[console_scripts]
+wordcloud_cli = wordcloud.__main__:main
+
