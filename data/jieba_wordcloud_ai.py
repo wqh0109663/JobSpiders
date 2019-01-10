@@ -3,6 +3,7 @@ import jieba
 import csv
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import pkuseg
 
 db = pymysql.connect(host='localhost', port=3306, user='root', passwd='Wuqihuan19950903', db='jobspider',
                      charset='utf8')
@@ -15,7 +16,10 @@ for item in results:
 
 # 将指针移到开头
 f.seek(0)
+# 结巴分词
 seg_list = jieba.cut(f.read(), cut_all=False)
+# pkuSegObj = pkuseg.pkuseg()
+# seg_list = pkuSegObj.cut(f.read())
 counter = dict()
 for seg in seg_list:
     counter[seg] = counter.get(seg, 1) + 1
@@ -23,7 +27,9 @@ counter_sort = sorted(counter.items(), key=lambda value: value[1], reverse=True)
 c = open("jobai.csv", "w+")
 writer = csv.writer(c)
 writer.writerows(counter_sort)
-c.seek(0)
+c.close()
+#c.seek(0)
+c=open("jobai.csv", "r")
 reader_csv = csv.reader(c)
 counter1 = {}
 for row in reader_csv:
