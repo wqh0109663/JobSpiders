@@ -47,9 +47,9 @@ class LagouSpider(CrawlSpider):
         browser = webdriver.Chrome(executable_path="/home/wqh/下载/chromedriver")
         browser.get(self.login_url)
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(1) > input").send_keys(
-            "13677134970")
+            "自己的账号")
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(2) > input").send_keys(
-            "wqh19950903")
+            "自己的账号密码")
         browser.find_element_by_css_selector(
             "div:nth-child(2) > form > div.input_item.btn_group.clearfix > input").click()
         import time
