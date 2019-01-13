@@ -65,6 +65,7 @@
   - source sql路径;
 * 运行main文件，打开注释内容，运行需要的spider即可，运行拉勾网的时候要改动谷歌浏览器的驱动chromedriver位置
 * 或者直接在命令行中运行scrapy runspider XX某某spider
+* 使用拉钩网模块的时候注意改成自己的拉钩网账号(我的已经改密码了，老是提示我的异地登陆)，还有就是更改chromedriver的位置
 
 ##  下面是一条爬到的数据
 
