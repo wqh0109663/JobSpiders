@@ -44,7 +44,7 @@
     workon py3scrapy
     安装好scrapy框架：
       pip install scrapy
-      - 安装时遇到一个错误twisted/test/raiser.c:4:20: fatal error: Python.h: No such file or directory，解决办法：先安装 **python-devel**，再安装
+      - 安装时遇到一个错误twisted/test/raiser.c:4:20: fatal error: Python.h: No such file or directory，解决办法：先安装 **python-dev，python3-dev**，再安装
       - 可以使用豆瓣源加速安装
       pip install -i https://pypi.douban.com/simple scrapy
       pip install fake-useragent
