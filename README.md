@@ -55,7 +55,7 @@
    ```
 
   3. 如果没有安装虚拟环境可以在pycharm中进行安装，alt+enter选择，如果没有正确的模块，就在setting中的project中的解释器Interpreter，再点击+号在里面搜索
-
+  4. 2019-3-10更新 发现一个问题环境问题，就是现在的Scrapy版本最新的1.6的，但是一点六的移除了一些组件导致安装的时候会报一个 "ImportError: No module named 'scrapy.contrib' "，所以自己去github上搜索scrapy通过源码编译安装1.5.1
 ####  运行项目
 * git clone https://github.com/wqh0109663/JobSpiders.git
 * 把下好的项目在pycharm中打开

@@ -47,12 +47,11 @@ class LagouSpider(CrawlSpider):
         browser = webdriver.Chrome(executable_path="/home/wqh/下载/chromedriver")
         browser.get(self.login_url)
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(1) > input").send_keys(
-            "自己的账号")
+            "13677134970")
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(2) > input").send_keys(
-            "自己的账号密码")
+            "wqh999999999")
         browser.find_element_by_css_selector(
             "div:nth-child(2) > form > div.input_item.btn_group.clearfix > input").click()
-        import time
         time.sleep(10)
         cookies = browser.get_cookies()
         cookie_dict = {}
@@ -120,12 +119,8 @@ class LagouSpider(CrawlSpider):
             item_loader.add_xpath("experience_year", "//*[@class='job_request']/p/span[3]/text()")
             item_loader.add_xpath("education_need", "//*[@class='job_request']/p/span[4]/text()")
             item_loader.add_xpath("job_type", "//*[@class='job_request']/p/span[5]/text()")
-            try:
-                item_loader.add_css("job_classification", '.position-label li::text')
-            except Exception as e:
-                print("job_classification error")
-                print(e)
-                item_loader.add_value("job_classification", '.job-name::attr(title)')
+            item_loader.add_value("job_classification", title)
+
             item_loader.add_css("publish_date", ".publish_time::text")
             item_loader.add_css("job_advantage_tags", ".job-advantage p::text")
             item_loader.add_css("position_info", ".job_bt div")
