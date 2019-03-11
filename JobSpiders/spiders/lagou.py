@@ -45,6 +45,7 @@ class LagouSpider(CrawlSpider):
 
     def start_requests(self):
         browser = webdriver.Chrome(executable_path="/home/wqh/下载/chromedriver")
+        # browser = webdriver.Firefox(executable_path="/home/wqh/下载/geckodriver")
         browser.get(self.login_url)
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(1) > input").send_keys(
             "13677134970")
@@ -52,7 +53,7 @@ class LagouSpider(CrawlSpider):
             "wqh999999999")
         browser.find_element_by_css_selector(
             "div:nth-child(2) > form > div.input_item.btn_group.clearfix > input").click()
-        time.sleep(10)
+        time.sleep(100)
         cookies = browser.get_cookies()
         cookie_dict = {}
         for cookie in cookies:
