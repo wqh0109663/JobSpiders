@@ -93,9 +93,13 @@
 拉钩网两处需要验证码的地方
 1. 登录
 ![login](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/login.png)
+
 2. 302重定向
+
 ![https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png)
 ##### 拉钩网验证
+
 ![robot](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/robot.png)
+
 #### 引进图片识别
 #### TODO
