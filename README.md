@@ -100,7 +100,7 @@
     ![https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png)
 ##### 拉钩网验证  
 
-    ![robot](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/robot.png)
+   ![robot](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/robot.png)
 
 #### 引进图片识别
 #### TODO
