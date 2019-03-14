@@ -8,6 +8,11 @@ import time
 from selenium import webdriver
 import pickle
 import logging
+import requests
+from PIL import Image
+from io import BytesIO
+from JobSpiders.utils.ruokuai_code import *
+from JobSpiders.utils.ruokuai import *
 
 from JobSpiders.items import LagouJobItem, LagouJobItemLoader
 from JobSpiders.utils.common import get_md5
@@ -51,9 +56,25 @@ class LagouSpider(CrawlSpider):
             "13677134970")
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(2) > input").send_keys(
             "wqh999999999")
+        print("11111::::"+browser.page_source)
         browser.find_element_by_css_selector(
             "div:nth-child(2) > form > div.input_item.btn_group.clearfix > input").click()
-        time.sleep(100)
+        print("2222222::::"+browser.page_source)
+        time.sleep(20)
+        element = browser.find_element_by_xpath("//div[@class='geetest_table_box']")
+        print('element::::', element)
+        if element:
+            time.sleep(10)
+            print('i am in ....')
+            print("33333::::"+browser.page_source)
+            imgs = browser.find_element_by_xpath("//img[@class='geetest_item_img'][1]/@src")
+            print('imgs::::::', imgs)
+            img = Image.open(BytesIO((requests.get(imgs[0])).content))
+            img.save('test.jpg')
+            rc = RClient('wqh0109663', '***', )
+            im = open('test.jpg', 'rb').read()
+            print(rc.rk_create(im, 6900))
+        time.sleep(10)
         cookies = browser.get_cookies()
         cookie_dict = {}
         for cookie in cookies:
@@ -66,6 +87,18 @@ class LagouSpider(CrawlSpider):
         # yield scrapy.Request(url='https://www.lagou.com', headers=self.headers, cookies=self.cookie, dont_filter=True)
 
     def parse_job(self, response):
+        if response.status == '302':
+            src = response.xpath("//img[@id='captcha']/@src").extract_first("")
+            img_src = "https://www.lagou.com" + src
+            image = Image.open(BytesIO((requests.get(img_src)).content))
+            image.save('verify2.gif')
+            rcf = RClientFour('wqh0109663', '**')
+            image = open('verify2.gif', 'rb').read()
+            result = rcf.rk_create_code(image, 3040).get('Result')
+            browser = webdriver.Chrome(executable_path="/home/wqh/下载/chromedriver")
+            browser.find_element_by_xpath("//*[@id='code']").send_keys(result)
+            browser.find_element_by_xpath("//a[@id='submit']").click()
+            return
         title = response.xpath("/html/body/div[2]/div/div[1]/div/span").extract_first("")
         item_loader = LagouJobItemLoader(item=LagouJobItem(), response=response)
         list_type = []

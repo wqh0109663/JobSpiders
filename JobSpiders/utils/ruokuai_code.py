@@ -2,7 +2,7 @@ import requests
 from hashlib import md5
 
 
-class RClient(object):
+class RClientFour(object):
 
     def __init__(self, username, password):
         self.username = username
@@ -10,8 +10,8 @@ class RClient(object):
             self.password = md5(password).hexdigest()
         except TypeError:
             self.password = md5(password.encode('utf-8')).hexdigest()
-        self.soft_id = '124345'
-        self.soft_key = '262e25743a11472c91339fa7928be302'
+        self.soft_id = '124507'
+        self.soft_key = 'a94f2367b53746518d49ebe34e7e13ac'
         self.base_params = {
             'username': self.username,
             'password': self.password,
@@ -24,7 +24,7 @@ class RClient(object):
             'User-Agent': 'ben',
         }
 
-    def rk_create(self, im, im_type, timeout=60):
+    def rk_create_code(self, im, im_type, timeout=60):
         """
         im: 图片字节
         im_type: 题目类型
@@ -51,7 +51,8 @@ class RClient(object):
 
 
 if __name__ == '__main__':
-    rc = RClient('wqh0109663', '**',)
-    im = open('test.jpg', 'rb').read()
-    print(rc.rk_create(im, 6900))
-
+    rc = RClientFour('wqh0109663', '***')
+    im = open('verify2.gif', 'rb').read()
+    print(rc.rk_create_code(im, 3040))
+    print(type(rc.rk_create_code(im, 3040)))
+    print(rc.rk_create_code(im, 3040).get('Result'))
