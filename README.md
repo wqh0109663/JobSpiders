@@ -91,15 +91,16 @@
 发现一个问题:就是使用驱动获取cookie，与使用浏览器自己打开，所弹出的登录页面有所不同，手动打开的网页中没有图片验证码，而使用驱动（无论是谷歌浏览器驱动还是火狐的浏览器驱动均没有用，亲测），根据相关文档查看到根据驱动是可以获取到指纹特征，所以拉钩也可能在这方面做过手脚，也看到使用驱动下面的一行代码会为true，‘window.navigator.webdriver’，所以应该还是挺多的方法可以检测是不是机器人在操作。
 #### 2019-3-14更新
 拉钩网两处需要验证码的地方
-1. 登录
-![login](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/login.png)
+1. 登录  
 
-2. 302重定向
+    ![login](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/login.png)
 
-![https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png)
-##### 拉钩网验证
+2. 302重定向  
 
-![robot](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/robot.png)
+    ![https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png)
+##### 拉钩网验证  
+
+    ![robot](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/robot.png)
 
 #### 引进图片识别
 #### TODO
