@@ -56,24 +56,67 @@ class LagouSpider(CrawlSpider):
             "13677134970")
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(2) > input").send_keys(
             "wqh999999999")
-        print("11111::::"+browser.page_source)
         browser.find_element_by_css_selector(
             "div:nth-child(2) > form > div.input_item.btn_group.clearfix > input").click()
-        print("2222222::::"+browser.page_source)
-        time.sleep(20)
+        time.sleep(10)
         element = browser.find_element_by_xpath("//div[@class='geetest_table_box']")
         print('element::::', element)
         if element:
-            time.sleep(10)
             print('i am in ....')
-            print("33333::::"+browser.page_source)
-            imgs = browser.find_element_by_xpath("//img[@class='geetest_item_img'][1]/@src")
-            print('imgs::::::', imgs)
-            img = Image.open(BytesIO((requests.get(imgs[0])).content))
-            img.save('test.jpg')
-            rc = RClient('wqh0109663', '***', )
-            im = open('test.jpg', 'rb').read()
-            print(rc.rk_create(im, 6900))
+            flag=True
+            while(flag):
+                imgs = browser.find_elements_by_xpath("//img[@class='geetest_item_img']")
+                print('imgs::::::', imgs)
+                img = Image.open(BytesIO((requests.get(imgs[0].get_attribute('src'))).content))
+                img.save('test.jpg')
+                rc = RClient('你的若快账号', '你的若快密码', )
+                im = open('test.jpg', 'rb').read()
+                result_img_code = rc.rk_create(im, 6900)
+                results_code = result_img_code.get('Result')
+                list_code = results_code.split('.')
+                print('list_code', list_code)
+                list_arr = []
+                for item in list_code:
+                    print('item', item)
+                    pixel_x_y = item.split(',')
+                    print('pixel_x_y', pixel_x_y)
+                    pixel_x = pixel_x_y[0]
+                    pixel_y = pixel_x_y[1]
+                    print('pixel_x', pixel_x)
+                    print('pixel_y', pixel_y)
+                    pixel_x = int(pixel_x)
+                    pixel_y = int(pixel_y)
+                    if pixel_x < 110:
+                        if pixel_y < 110:
+                            list_arr.append(1)
+                        elif 110 < pixel_y < 220:
+                            list_arr.append(4)
+                        elif 220 < pixel_y < 330:
+                            list_arr.append(7)
+                    elif 110 < pixel_x < 220:
+                        if pixel_y < 110:
+                            list_arr.append(2)
+                        elif 110 < pixel_y < 220:
+                            list_arr.append(5)
+                        elif 220 < pixel_y < 330:
+                            list_arr.append(8)
+                    elif 220 < pixel_x < 330:
+                        if pixel_y < 110:
+                            list_arr.append(3)
+                        elif 110 < pixel_y < 220:
+                            list_arr.append(6)
+                        elif 220 < pixel_y < 330:
+                            list_arr.append(9)
+                print(list_arr)
+                for i in list_arr:
+                    xpath_str = "(//div[@class='geetest_item'][{0}]//div[@class='geetest_item_ghost'])".format(i)
+                    print(xpath_str)
+                    browser.find_element_by_xpath(xpath_str).click()
+                browser.find_element_by_xpath("//a[@class='geetest_commit']").click()
+                time.sleep(10)  # 等一会看是不是会跳转到首页
+                print(browser.current_url)
+                if browser.current_url != 'https://passport.lagou.com/login/login.html':
+                    flag = False
         time.sleep(10)
         cookies = browser.get_cookies()
         cookie_dict = {}
@@ -87,18 +130,6 @@ class LagouSpider(CrawlSpider):
         # yield scrapy.Request(url='https://www.lagou.com', headers=self.headers, cookies=self.cookie, dont_filter=True)
 
     def parse_job(self, response):
-        if response.status == '302':
-            src = response.xpath("//img[@id='captcha']/@src").extract_first("")
-            img_src = "https://www.lagou.com" + src
-            image = Image.open(BytesIO((requests.get(img_src)).content))
-            image.save('verify2.gif')
-            rcf = RClientFour('wqh0109663', '**')
-            image = open('verify2.gif', 'rb').read()
-            result = rcf.rk_create_code(image, 3040).get('Result')
-            browser = webdriver.Chrome(executable_path="/home/wqh/下载/chromedriver")
-            browser.find_element_by_xpath("//*[@id='code']").send_keys(result)
-            browser.find_element_by_xpath("//a[@id='submit']").click()
-            return
         title = response.xpath("/html/body/div[2]/div/div[1]/div/span").extract_first("")
         item_loader = LagouJobItemLoader(item=LagouJobItem(), response=response)
         list_type = []

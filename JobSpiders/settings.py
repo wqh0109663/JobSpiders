@@ -39,6 +39,7 @@ DOWNLOAD_DELAY = 0.1
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
 from JobSpiders.utils.getLaGouCookie import *
+
 # Override the default request headers:
 # DEFAULT_REQUEST_HEADERS = {
 #   'Accept': 'application/json, text/javascript, */*; q=0.01',
@@ -65,10 +66,11 @@ DOWNLOADER_MIDDLEWARES = {
     'JobSpiders.middlewares.JobspidersDownloaderMiddleware': 543,
     'JobSpiders.middlewares.RandomUserAgentMiddleware': 1,
     # 'JobSpiders.middlewares.JSPageMiddleware' : 100,
+    'JobSpiders.redirectMiddleware.RedirectMiddleware': 460,
     'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 700,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,  # 这里要设置原来的scrapy的useragent为None，否者会被覆盖掉
 }
-
+# 自定义302状态的Middleware
 RANDOM_UA_TYPE = 'random'
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
