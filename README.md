@@ -103,6 +103,6 @@
    ![robot](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/robot.png)
 
 #### 引进图片识别
-#### 2019-3-15更新
+#### 2019-3-19更新
 修改spider下的lagou.py，修改若快账号
-#### TODO验证4次以上之后的代码没写
+
