@@ -27,7 +27,7 @@ class RedirectMiddleware(BaseRedirectMiddleware):
                 print('img_src', img_src)
                 image = Image.open(BytesIO((requests.get(img_src)).content))
                 image.save('verify2.gif')
-                rcf = RClientFour('你的若快账号', '你的若快密码')
+                rcf = RClientFour('若快账号', '密码')
                 image = open('verify2.gif', 'rb').read()
                 result = rcf.rk_create_code(image, 3040).get('Result')
                 print('result', result)

@@ -66,7 +66,7 @@ DOWNLOADER_MIDDLEWARES = {
     'JobSpiders.middlewares.JobspidersDownloaderMiddleware': 543,
     'JobSpiders.middlewares.RandomUserAgentMiddleware': 1,
     # 'JobSpiders.middlewares.JSPageMiddleware' : 100,
-    'JobSpiders.redirectMiddleware.RedirectMiddleware': 460,
+    # 'JobSpiders.redirectMiddleware.RedirectMiddleware': 460,
     'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 700,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,  # 这里要设置原来的scrapy的useragent为None，否者会被覆盖掉
 }

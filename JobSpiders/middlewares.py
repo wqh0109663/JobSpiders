@@ -6,7 +6,11 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-from fake_useragent import UserAgent #这是一个随机UserAgent的包，里面有很多UserAgent
+from fake_useragent import UserAgent
+
+
+# 这是一个随机UserAgent的包，里面有很多UserAgent
+
 
 class JobspidersSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -108,7 +112,7 @@ class RandomUserAgentMiddleware(object):
         super(RandomUserAgentMiddleware, self).__init__()
 
         self.ua = UserAgent()
-        self.ua_type = crawler.settings.get('RANDOM_UA_TYPE', 'random') #从setting文件中读取RANDOM_UA_TYPE值
+        self.ua_type = crawler.settings.get('RANDOM_UA_TYPE', 'random')  # 从setting文件中读取RANDOM_UA_TYPE值
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -119,9 +123,8 @@ class RandomUserAgentMiddleware(object):
             '''Gets random UA based on the type setting (random, firefox…)'''
             return getattr(self.ua, self.ua_type)
 
-        user_agent_random=get_ua()
-        request.headers.setdefault('User-Agent', user_agent_random) #这样就是实现了User-Agent的随即变换
-
+        user_agent_random = get_ua()
+        request.headers.setdefault('User-Agent', user_agent_random)  # 这样就是实现了User-Agent的随即变换
 
 # import time
 # from selenium import webdriver
