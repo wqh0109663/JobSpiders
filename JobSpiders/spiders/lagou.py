@@ -27,7 +27,7 @@ class LagouSpider(CrawlSpider):
     allowed_domains = ['www.lagou.com']
     start_urls = ['https://www.lagou.com']
     login_url = "https://passport.lagou.com/login/login.html"
-
+    custom_settings = {'REDIRECT_ENABLED': False}
     rules = (
         Rule(LinkExtractor(allow=("zhaopin/.*",)), follow=True),
         Rule(LinkExtractor(allow=("gongsi/j\d+.html",)), follow=True),
@@ -57,24 +57,34 @@ class LagouSpider(CrawlSpider):
         # browser = webdriver.Firefox(executable_path="/home/wqh/下载/geckodriver")
         browser.get(self.login_url)
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(1) > input").send_keys(
-            "13677134970")
+            "拉钩账号")
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(2) > input").send_keys(
-            "wqh999999999")
+            "拉钩密码")
         browser.find_element_by_css_selector(
             "div:nth-child(2) > form > div.input_item.btn_group.clearfix > input").click()
-        time.sleep(10)
+        time.sleep(5)
         element = browser.find_element_by_xpath("//div[@class='geetest_table_box']")
         print('element::::', element)
         if element:
             print('i am in ....')
             flag = True
             while flag:
+                try:
+                    footer_element = browser.find_element_by_xpath(
+                        "//div[@class='geetest_panel_footer' and @style='display: none;']")
+                    print('footer::::', footer_element)
+                except NoSuchElementException as e:
+                    print('正在重试。。。。', e)
+                    browser.find_element_by_xpath(
+                        "//div[@class='geetest_panel_error_content']").click()
+                    time.sleep(5)
+                    pass
                 imgs = browser.find_elements_by_xpath("//img[@class='geetest_item_img']")
                 print('imgs::::::', imgs)
                 try:
                     img = Image.open(BytesIO((requests.get(imgs[0].get_attribute('src'))).content))
                     img.save('test.jpg')
-                    rc = RClient('若快账号', '密码')
+                    rc = RClient('若快账号', '若快密码')
                     im = open('test.jpg', 'rb').read()
                 except IOError:
                     print('*****检查自己的快豆是不是没了****')
@@ -121,17 +131,7 @@ class LagouSpider(CrawlSpider):
                     print(xpath_str)
                     browser.find_element_by_xpath(xpath_str).click()
                 browser.find_element_by_xpath("//a[@class='geetest_commit']").click()
-                time.sleep(10)
-                try:
-                    footer_element = browser.find_element_by_xpath(
-                        "//div[@class='geetest_panel_footer' and @style='display: none;']")
-                    print('footer::::', footer_element)
-                except NoSuchElementException as e:
-                    print('get element error', e)
-                    print('正在重试。。。。')
-                    browser.find_element_by_xpath(
-                        "//div[@class='geetest_panel_error_content']").click()
-                time.sleep(3)  # 等一会看是不是会跳转到首页
+                time.sleep(5)  # 等一会看是不是会跳转到首页
                 print(browser.current_url)
                 if browser.current_url != 'https://passport.lagou.com/login/login.html':
                     flag = False
@@ -145,18 +145,18 @@ class LagouSpider(CrawlSpider):
             pickle.dump(cookie_dict, wf)
         logging.info('--------lagou cookies---------')
         print(cookie_dict)
-        return [scrapy.Request(self.start_urls[0], cookies=cookie_dict, meta=self.meta)]
+        return [scrapy.Request(self.start_urls[0], cookies=cookie_dict, dont_filter=True)]
         # yield scrapy.Request(url='https://www.lagou.com', headers=self.headers, cookies=self.cookie, dont_filter=True)
 
     def parse_job(self, response):
         if response.status == '302':
             print("302")
-            time.sleep(10000)
+            time.sleep(100)
             src = response.xpath("//img[@id='captcha']/@src").extract_first("")
             img_src = "https://www.lagou.com" + src
             image = Image.open(BytesIO((requests.get(img_src)).content))
             image.save('verify2.gif')
-            rcf = RClientFour('若快账号', '密码')
+            rcf = RClientFour('若快账号', '若快密码')
             image = open('verify2.gif', 'rb').read()
             result = rcf.rk_create_code(image, 3040).get('Result')
             browser = webdriver.Chrome(executable_path="/home/wqh/下载/chromedriver")
