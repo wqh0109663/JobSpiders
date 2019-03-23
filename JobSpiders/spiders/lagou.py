@@ -21,6 +21,10 @@ from JobSpiders.utils.getLaGouCookie import *
 
 
 class LagouSpider(CrawlSpider):
+    ruokuai_username = '***'
+    ruokuai_passwd = '****'
+    lagou_username = '***'
+    lagou_passwd = '***'
     handle_httpstatus_list = [302]
     meta = {'dont_redirect': True, "handle_httpstatus_list": [302]}
     name = 'lagou'
@@ -57,9 +61,9 @@ class LagouSpider(CrawlSpider):
         # browser = webdriver.Firefox(executable_path="/home/wqh/下载/geckodriver")
         browser.get(self.login_url)
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(1) > input").send_keys(
-            "拉钩账号")
+            self.lagou_username)
         browser.find_element_by_css_selector("div:nth-child(2) > form > div:nth-child(2) > input").send_keys(
-            "拉钩密码")
+            self.lagou_passwd)
         browser.find_element_by_css_selector(
             "div:nth-child(2) > form > div.input_item.btn_group.clearfix > input").click()
         time.sleep(5)
@@ -84,7 +88,7 @@ class LagouSpider(CrawlSpider):
                 try:
                     img = Image.open(BytesIO((requests.get(imgs[0].get_attribute('src'))).content))
                     img.save('test.jpg')
-                    rc = RClient('若快账号', '若快密码')
+                    rc = RClient(self.ruokuai_username, self.ruokuai_passwd)
                     im = open('test.jpg', 'rb').read()
                 except IOError:
                     print('*****检查自己的快豆是不是没了****')
@@ -145,24 +149,43 @@ class LagouSpider(CrawlSpider):
             pickle.dump(cookie_dict, wf)
         logging.info('--------lagou cookies---------')
         print(cookie_dict)
-        return [scrapy.Request(self.start_urls[0], cookies=cookie_dict, dont_filter=True)]
+        return [scrapy.Request(self.start_urls[0], cookies=cookie_dict, meta={
+            'dont_redirect': True,
+            'handle_httpstatus_list': [302]
+        })]
         # yield scrapy.Request(url='https://www.lagou.com', headers=self.headers, cookies=self.cookie, dont_filter=True)
 
     def parse_job(self, response):
-        if response.status == '302':
+        global global_result
+        if response.status == 302:
             print("302")
-            time.sleep(100)
-            src = response.xpath("//img[@id='captcha']/@src").extract_first("")
-            img_src = "https://www.lagou.com" + src
-            image = Image.open(BytesIO((requests.get(img_src)).content))
-            image.save('verify2.gif')
-            rcf = RClientFour('若快账号', '若快密码')
-            image = open('verify2.gif', 'rb').read()
-            result = rcf.rk_create_code(image, 3040).get('Result')
-            browser = webdriver.Chrome(executable_path="/home/wqh/下载/chromedriver")
-            browser.find_element_by_xpath("//*[@id='code']").send_keys(result)
-            browser.find_element_by_xpath("//a[@id='submit']").click()
-            return
+            print(response.url)
+            time.sleep(3)
+            try:
+                src = response.xpath("//img[@id='captcha']/@src").extract_first("")
+                if src:
+                    print('src:', src)
+                    img_src = "https://www.lagou.com" + src
+                    try:
+                        image = Image.open(BytesIO((requests.get(img_src)).content))
+                        image.save('verify2.gif')
+                        rcf = RClientFour(self.ruokuai_username, self.ruokuai_passwd)
+                        image = open('verify2.gif', 'rb').read()
+                        global_result = rcf.rk_create_code(image, 3040).get('Result')
+                        print('result:', global_result)
+                    except IOError:
+                        print('*****检查自己的快豆是不是没了****')
+                        pass
+                    # time.sleep(100000)
+                    browser = webdriver.Chrome(executable_path="/home/wqh/下载/chromedriver")
+                    browser.find_element_by_xpath("//*[@id='code']").send_keys(global_result)
+                    browser.find_element_by_xpath("//a[@id='submit']").click()
+                    return
+            except Exception as e:
+                print(e)
+                print('不是验证页面')
+                pass
+
         title = response.xpath("/html/body/div[2]/div/div[1]/div/span").extract_first("")
         item_loader = LagouJobItemLoader(item=LagouJobItem(), response=response)
         list_type = []

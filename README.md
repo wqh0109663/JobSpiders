@@ -95,7 +95,7 @@
 
     ![login](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/login.png)
 
-2. 302重定向  
+2. 302重定向(Fixed)  
 
     ![https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/20190314224307.png)
 ##### 拉钩网验证  
@@ -103,7 +103,7 @@
    ![robot](https://raw.githubusercontent.com/wqh0109663/JobSpiders/master/JobSpiders/images/robot.png)
 
 #### 引进图片识别
-#### 2019-3-19更新
-修改spider下的lagou.py，修改为自己的若快账号
+#### 2019-3-23更新
+修改spider下的lagou.py，修改为自己的若快账号和拉钩账号
 
 
