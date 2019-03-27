@@ -2,6 +2,7 @@
 import re
 from datetime import datetime
 import scrapy
+from scrapy import Request
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 import time
@@ -21,10 +22,10 @@ from JobSpiders.utils.getLaGouCookie import *
 
 
 class LagouSpider(CrawlSpider):
-    ruokuai_username = '***'
-    ruokuai_passwd = '****'
-    lagou_username = '***'
-    lagou_passwd = '***'
+    ruokuai_username = 'wqh0109663'
+    ruokuai_passwd = '*****'
+    lagou_username = '****'
+    lagou_passwd = '****'
     handle_httpstatus_list = [302]
     meta = {'dont_redirect': True, "handle_httpstatus_list": [302]}
     name = 'lagou'
@@ -38,15 +39,13 @@ class LagouSpider(CrawlSpider):
         Rule(LinkExtractor(allow=r'jobs/\d+.html'), callback='parse_job', follow=True),
     )
     headers = {
-        'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'Accept-Language': 'zh-CN,zh;q=0.9',
         'Connection': 'keep-alive',
-        'Host': 'www.lagou.com',
-        'Referer': 'https://www.lagou.com/',
-        'X-Anit-Forge-Code': '0',
-        'X-Anit-Forge-Token': 'None',
+        'Cache-Control': 'max-age=0',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
         'Accept-Encoding': 'gzip, deflate, br',
-        'X-Requested-With': 'XMLHttpRequest'
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
     }
     # cookie='ga=GA1.2.430541542.1531227260; user_trace_token=20180710205419-5c6c1887-8440-11e8-993d-5254005c3644; LGUID=20180710205419-5c6c1cf6-8440-11e8-993d-5254005c3644; index_location_city=%E5%85%A8%E5%9B%BD; JSESSIONID=ABAAABAAAGFABEFC268BFA79F037F3E81290C6985343757; Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1531877495,1531982693,1532526791,1532937871; _gid=GA1.2.1809205573.1532937871; TG-TRACK-CODE=index_search; X_HTTP_TOKEN=256bfa9cb92ef88a7f7ee1f7bc905564; SEARCH_ID=9ad79bdbdd374fe2afcc9e4b06b54b58; ab_test_random_num=0; hasDeliver=0; showExpriedIndex=1; showExpriedCompanyHome=1; showExpriedMyPublish=1; _gat=1; LGSID=20180730180847-8c66cefa-93e0-11e8-abc3-525400f775ce; PRE_UTM=; PRE_HOST=; PRE_SITE=; PRE_LAND=https%3A%2F%2Fwww.lagou.com%2F; LG_LOGIN_USER_ID=d972850df5693982a5f2563e25543780d46de1e07ef92a97ca47f15c949e2c50; _putrc=4FD3D6BE655DEA0F123F89F2B170EADC; login=true; unick=%E5%90%B4%E5%90%AF%E6%AC%A2; gate_login_token=3bac4153fd3381c0933726c618b0bc9039dac868f848721a67b3379dee220f4c; LGRID=20180730180923-a1f5d23c-93e0-11e8-a082-5254005c3644; Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1532945363'
     # cookie = getLaGouCookie()
@@ -94,7 +93,9 @@ class LagouSpider(CrawlSpider):
                     print('*****检查自己的快豆是不是没了****')
                     return
                 result_img_code = rc.rk_create(im, 6900)
+                print(result_img_code)
                 results_code = result_img_code.get('Result')
+                print(results_code)
                 list_code = results_code.split('.')
                 print('list_code', list_code)
                 list_arr = []
@@ -132,15 +133,20 @@ class LagouSpider(CrawlSpider):
                 print(list_arr)
                 for i in list_arr:
                     xpath_str = "(//div[@class='geetest_item'][{0}]//div[@class='geetest_item_ghost'])".format(i)
-                    print(xpath_str)
-                    browser.find_element_by_xpath(xpath_str).click()
+                    print(xpath_str, i)
+                    try:
+                        browser.find_element_by_xpath(xpath_str).click()
+                    except Exception as e:
+                        print(e)
+                        pass
+                time.sleep(1)
                 browser.find_element_by_xpath("//a[@class='geetest_commit']").click()
                 time.sleep(5)  # 等一会看是不是会跳转到首页
                 print(browser.current_url)
                 if browser.current_url != 'https://passport.lagou.com/login/login.html':
                     flag = False
 
-        time.sleep(10)
+        time.sleep(5)
         cookies = browser.get_cookies()
         cookie_dict = {}
         for cookie in cookies:
@@ -149,19 +155,36 @@ class LagouSpider(CrawlSpider):
             pickle.dump(cookie_dict, wf)
         logging.info('--------lagou cookies---------')
         print(cookie_dict)
-        return [scrapy.Request(self.start_urls[0], cookies=cookie_dict, meta={
+        self.cookie = cookie_dict
+        return [scrapy.Request(self.start_urls[0], cookies=cookie_dict, headers=self.headers, meta={
             'dont_redirect': True,
             'handle_httpstatus_list': [302]
         })]
         # yield scrapy.Request(url='https://www.lagou.com', headers=self.headers, cookies=self.cookie, dont_filter=True)
+
+    def _build_request(self, rule, link):
+        # 没有改完 。。。。。
+        print(link.url)
+        response = requests.get(link.url, headers=self.headers, cookies=self.cookie)  # 请求原网页
+        r = requests.utils.dict_from_cookiejar(response.cookies)  # 获取cookies
+        print(r)
+        if "LGRID" in r:
+            r["user_trace_token"] = r["LGRID"]
+            r["LGSID"] = r["LGRID"]
+            r["LGUID"] = r["LGRID"]  # 构造cookies的参数
+            self.cookie.update(r)
+        my_request = Request(url=link.url, headers=self.headers, callback=self.parse_job, cookies=self.cookie)
+        my_request.meta.update(rule=rule, link_text=link.text)
+        time.sleep(1)  ## 每一次请求停一秒
+        return my_request
 
     def parse_job(self, response):
         global global_result
         if response.status == 302:
             print("302")
             print(response.url)
-            time.sleep(3)
             try:
+                time.sleep(1)
                 src = response.xpath("//img[@id='captcha']/@src").extract_first("")
                 if src:
                     print('src:', src)
