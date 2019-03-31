@@ -23,16 +23,17 @@ from JobSpiders.utils.getLaGouCookie import *
 
 class LagouSpider(CrawlSpider):
     ruokuai_username = 'wqh0109663'
-    ruokuai_passwd = '*****'
-    lagou_username = '****'
-    lagou_passwd = '****'
+    ruokuai_passwd = 'Wuqihuan19950903'
+    lagou_username = '13677134970'
+    lagou_passwd = 'wqh666666'
     handle_httpstatus_list = [302]
+    custom_settings = {'COOKIES_ENABLED': False, 'CONCURRENT_REQUESTS': 2, 'DOWNLOAD_DELAY': 2}
     meta = {'dont_redirect': True, "handle_httpstatus_list": [302]}
     name = 'lagou'
     allowed_domains = ['www.lagou.com']
     start_urls = ['https://www.lagou.com']
     login_url = "https://passport.lagou.com/login/login.html"
-    custom_settings = {'REDIRECT_ENABLED': False}
+    # custom_settings = {'REDIRECT_ENABLED': False}
     rules = (
         Rule(LinkExtractor(allow=("zhaopin/.*",)), follow=True),
         Rule(LinkExtractor(allow=("gongsi/j\d+.html",)), follow=True),
@@ -162,21 +163,21 @@ class LagouSpider(CrawlSpider):
         })]
         # yield scrapy.Request(url='https://www.lagou.com', headers=self.headers, cookies=self.cookie, dont_filter=True)
 
-    def _build_request(self, rule, link):
-        # 没有改完 。。。。。
-        print(link.url)
-        response = requests.get(link.url, headers=self.headers, cookies=self.cookie)  # 请求原网页
-        r = requests.utils.dict_from_cookiejar(response.cookies)  # 获取cookies
-        print(r)
-        if "LGRID" in r:
-            r["user_trace_token"] = r["LGRID"]
-            r["LGSID"] = r["LGRID"]
-            r["LGUID"] = r["LGRID"]  # 构造cookies的参数
-            self.cookie.update(r)
-        my_request = Request(url=link.url, headers=self.headers, callback=self.parse_job, cookies=self.cookie)
-        my_request.meta.update(rule=rule, link_text=link.text)
-        time.sleep(1)  ## 每一次请求停一秒
-        return my_request
+    # def _build_request(self, rule, link):
+    #     # 没有改完 。。。。。
+    #     print(link.url)
+    #     response = requests.get(link.url, headers=self.headers)  # 请求原网页
+    #     r = requests.utils.dict_from_cookiejar(response.cookies)  # 获取cookies
+    #     print(r)
+    #     if "LGRID" in r:
+    #         r["user_trace_token"] = r["LGRID"]
+    #         r["LGSID"] = r["LGRID"]
+    #         r["LGUID"] = r["LGRID"]  # 构造cookies的参数
+    #         self.cookie.update(r)
+    #     my_request = Request(url=link.url, headers=self.headers, callback=self.parse_job, cookies=self.cookie)
+    #     my_request.meta.update(rule=rule, link_text=link.text)
+    #     # time.sleep(1)  ## 每一次请求停一秒
+    #     return my_request
 
     def parse_job(self, response):
         global global_result
