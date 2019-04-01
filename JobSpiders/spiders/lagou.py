@@ -22,10 +22,10 @@ from JobSpiders.utils.getLaGouCookie import *
 
 
 class LagouSpider(CrawlSpider):
-    ruokuai_username = 'wqh0109663'
-    ruokuai_passwd = 'Wuqihuan19950903'
-    lagou_username = '13677134970'
-    lagou_passwd = 'wqh666666'
+    ruokuai_username = 'wqh01****'
+    ruokuai_passwd = '*****'
+    lagou_username = '13677134****'
+    lagou_passwd = '****'
     handle_httpstatus_list = [302]
     custom_settings = {'COOKIES_ENABLED': False, 'CONCURRENT_REQUESTS': 2, 'DOWNLOAD_DELAY': 2}
     meta = {'dont_redirect': True, "handle_httpstatus_list": [302]}
