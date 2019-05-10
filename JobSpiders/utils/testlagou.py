@@ -17,6 +17,7 @@ response = requests.get(
     headers=headers)  # 请求原网页
 r = requests.utils.dict_from_cookiejar(response.cookies)  # 获取cookies
 print(r)
+r["LGRID"] = r["user_trace_token"]
 r["user_trace_token"] = r["LGRID"]
 r["LGSID"] = r["LGRID"]
 r["LGUID"] = r["LGRID"]  # 构造cookies的参数

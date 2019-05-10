@@ -61,7 +61,7 @@ class Lagou2Spider(scrapy.Spider):
             'Referer': 'https://www.lagou.com/jobs/list_java?px=new&city=%E4%B8%8A%E6%B5%B7',
             'X-Requested-With': 'XMLHttpRequest',
             'Connection': 'keep-alive',
-            'X-Anit-Forge-Token': 'None',
+            'X-Anit-Forge-Token': 'None'
         }
         params = (
             ('px', 'new'),
@@ -78,8 +78,8 @@ class Lagou2Spider(scrapy.Spider):
         while flag_type < len(type_list):
             data['kd'] = type_list[flag_type]
             while True:
-                # print('cookie:::::', response.request.headers.getlist('Cookie'))
-                # print('set-cookie::::::', response.headers.getlist('Set-Cookie'))
+                print('cookie:::::', response.request.headers.getlist('Cookie'))
+                print('set-cookie::::::', response.headers.getlist('Set-Cookie'))
                 # print('cookie jar:', cookiejar.extract_cookies(response, response.request))
 
                 # print('cookie jar type:', type(cookiejar.extract_cookies(response, response.request)))
@@ -93,13 +93,22 @@ class Lagou2Spider(scrapy.Spider):
                     # r['LGRID'] = r["LGRID"]
                 else:
                     r = {}  # 获取cookies
-                    r['LGRID'] = (response.headers.getlist('Set-Cookie'))[2].decode("utf-8").split(';')[0].split('=')[1]
+                    print(type(response.headers.getlist('Set-Cookie')))
+                    response_list = response.headers.getlist('Set-Cookie')
+                    # if any('user_trace_token' in resp.decode('utf-8') for resp in response_list):
+                    indices = [i for i, s in enumerate(response_list) if 'user_trace_token' in s.decode('utf-8')]
+                    print(indices)
+                    user_trace_token = response_list[indices[0]].decode('utf-8').split(';')[0].split('=')[1]
+                    print(user_trace_token)
+                    r['LGRID'] = user_trace_token
+                    # r['LGRID'] = (response.headers.getlist('Set-Cookie'))[2].decode("utf-8").split(';')[0].split('=')[1]
                     print(r)
                 r["user_trace_token"] = r["LGRID"]
                 r["LGSID"] = r["LGRID"]
                 r["LGUID"] = r["LGRID"]  # 构造cookies的参数113.92.199.204
 
                 cookies.update(r)  # 更新接口的cookies
+                print(cookies)
 
                 response = requests.post('https://www.lagou.com/jobs/positionAjax.json', headers=headers, params=params,
                                          cookies=cookies, data=data)  # 请求接口
