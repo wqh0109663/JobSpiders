@@ -36,10 +36,8 @@
 
 * 其次就是安装一些模块，提供三种
   1. 最简单的方法 pip install -r requirements.txt
-  1. 第2种方式直接使用我的虚拟环境，使virtualenv目录下的py3scrapy目录成为当前pycharm运行的环境  
-
   ![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/virtualenv.png)
-  2. 第3种方式如果安装了virtualenv和virtualenvwrapper就直接运行以下命令安装
+  2. 第2种方式如果安装了virtualenv和virtualenvwrapper就直接运行以下命令安装
     ```
     mkvirtualenv --python=/usr/bin/python3 py3scrapy
     workon py3scrapy
@@ -85,6 +83,26 @@
 * 效果图，待完善  
 
 ![](https://github.com/wqh0109663/JobSpiders/raw/master/data/image.png)
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/AI岗位地点分布.png)
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/C++岗位地点分布.png) 
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/job_classification.png) 
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/Python前二十需求.png) 
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/Python岗位地点分布.png) 
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/大数据岗位地点分布.png) 
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/岗位地点分布.png) 
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/算法岗位地点分布.png)
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片1.png)
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片2.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片3.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片4.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片5.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片6.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片7.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片8.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片9.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片10.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片11.png)  
+![](https://github.com/wqh0109663/JobSpiders/raw/master/JobSpiders/images/图片12.png)      
 
 #### TODO
 

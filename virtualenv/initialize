@@ -1,3 +1,0 @@
-#!/usr/bin/zsh
-# This hook is sourced during the startup phase when loading virtualenvwrapper.sh.
-

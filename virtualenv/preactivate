@@ -1,4 +1,0 @@
-#!/usr/bin/zsh
-# This hook is run before every virtualenv is activated.
-# argument: environment name
-

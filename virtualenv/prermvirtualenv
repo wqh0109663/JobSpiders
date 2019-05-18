@@ -1,4 +1,0 @@
-#!/usr/bin/zsh
-# This hook is run before a virtualenv is deleted.
-# argument: full path to environment directory
-

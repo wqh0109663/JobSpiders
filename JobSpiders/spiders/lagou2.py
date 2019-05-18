@@ -7,7 +7,7 @@ import scrapy
 from JobSpiders.items import LagouJobItem, LagouJobItemLoader
 from JobSpiders.utils.common import get_md5
 from JobSpiders.utils.getLaGouCookie import *
-
+import requests
 
 class Lagou2Spider(scrapy.Spider):
     name = 'lagou2'
@@ -99,7 +99,7 @@ class Lagou2Spider(scrapy.Spider):
                     indices = [i for i, s in enumerate(response_list) if 'user_trace_token' in s.decode('utf-8')]
                     print(indices)
                     user_trace_token = response_list[indices[0]].decode('utf-8').split(';')[0].split('=')[1]
-                    print(user_trace_token)
+                    print(user_trace_token, type(user_trace_token))
                     r['LGRID'] = user_trace_token
                     # r['LGRID'] = (response.headers.getlist('Set-Cookie'))[2].decode("utf-8").split(';')[0].split('=')[1]
                     print(r)
@@ -108,7 +108,7 @@ class Lagou2Spider(scrapy.Spider):
                 r["LGUID"] = r["LGRID"]  # 构造cookies的参数113.92.199.204
 
                 cookies.update(r)  # 更新接口的cookies
-                print(cookies)
+                print('cookie:', cookies)
 
                 response = requests.post('https://www.lagou.com/jobs/positionAjax.json', headers=headers, params=params,
                                          cookies=cookies, data=data)  # 请求接口

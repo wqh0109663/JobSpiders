@@ -42,6 +42,7 @@ cookies = {
     'SEARCH_ID': '86ed37f5d8da417dafb53aa25cd6fbc0',
 }
 cookies.update(r)  # 更新接口的cookies
+print('cookie', cookies)
 headers = {
     'Origin': 'https://www.lagou.com',
     'X-Anit-Forge-Code': '0',

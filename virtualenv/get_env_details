@@ -1,4 +1,0 @@
-#!/usr/bin/zsh
-# This hook is run when the list of virtualenvs is printed so each name can include details.
-# argument: environment name
-

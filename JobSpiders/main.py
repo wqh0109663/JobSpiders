@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 # execute(["scrapy", "crawl", "job51"])
 
-# os.system("scrapy crawl lagou")
+# os.system("scrapy crawl lagou2")
 os.system("scrapy crawl job51")
 # os.system("scrapy crawl zhaopin_java")
 #
