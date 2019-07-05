@@ -125,4 +125,9 @@
 #### 2019-3-23更新
 修改spider下的lagou.py，修改为自己的若快账号和拉钩账号
 
+### 项目已不再更新，想要拉钩网数据参考[testlagou.py](https://github.com/wqh0109663/JobSpiders/blob/master/JobSpiders/spiders/testlagou.py)
+动态更新cookie值就可以了，全站难度有点大，直接请求接口比较简单
+
+
+
 
