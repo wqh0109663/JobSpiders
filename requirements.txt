@@ -77,7 +77,7 @@ testpath==0.4.2
 tornado==6.0.2
 traitlets==4.3.2
 Twisted==18.9.0
-urllib3==1.24.1
+urllib3==1.26.5
 w3lib==1.20.0
 wcwidth==0.1.7
 webencodings==0.5.1
