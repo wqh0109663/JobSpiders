@@ -110,7 +110,7 @@ ITEM_PIPELINES = {
 MYSQL_HOST = "127.0.0.1"
 MYSQL_DBNAME = "jobspider"
 MYSQL_USER = "root"
-MYSQL_PASSWORD = "Wuqihuan19950903"
+MYSQL_PASSWORD = "your password"
 
 SQL_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 SQL_DATE_FORMAT = "%Y-%m-%d"
